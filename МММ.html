@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Жанерке — Моё сердце</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#ff9a9e;
+      --bg2:#fecfef;
+      --accent:#ff3b6b;
+      --glass: rgba(255,255,255,0.12);
+      --glass-2: rgba(255,255,255,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Poppins,system-ui,Arial}
+    body{
+      background: radial-gradient(circle at 20% 20%, var(--bg2), transparent 20%), linear-gradient(135deg,var(--bg1), #ffd6e8 60%);
+      display:flex;align-items:center;justify-content:center;padding:40px;
+      overflow:hidden;color:#3b0b1f;
+    }
+    .card{
+      width:min(980px,96%);
+      background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.72));
+      border-radius:22px;padding:30px;box-shadow:0 12px 40px rgba(27,11,21,0.18);backdrop-filter: blur(6px);
+      position:relative;overflow:hidden;
+    }
+    header{display:flex;gap:20px;align-items:center}
+    .avatar{
+      width:110px;height:110px;border-radius:50%;background:conic-gradient(from 180deg at 50% 50%, #fff6, transparent 30%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><circle cx="100" cy="100" r="100" fill="%23ffffff" opacity="0.06"/></svg>') center/cover no-repeat;border:6px solid rgba(255,255,255,0.55);
+      display:flex;align-items:center;justify-content:center;font-family:'Great Vibes',cursive;font-size:34px;color:#7f0822
+    }
+    h1{font-family:'Great Vibes',cursive;font-size:46px;margin:0}
+    p.lead{margin:6px 0 0;color:#5a1b2a}
+
+    .content{display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:22px}
+    .left{padding:18px;background:linear-gradient(180deg,var(--glass),var(--glass-2));border-radius:14px}
+    .poem{line-height:1.5;font-size:18px}
+
+    .right{display:flex;flex-direction:column;gap:12px}
+    .btn{background:var(--accent);color:white;border:none;padding:12px 16px;border-radius:12px;font-weight:600;cursor:pointer;box-shadow:0 8px 20px rgba(255,59,107,0.18)}
+    .outline{background:transparent;border:2px solid rgba(59,11,22,0.08);padding:10px;border-radius:12px}
+
+    .hearts{position:absolute;inset:0;pointer-events:none}
+    .heart{position:absolute;width:18px;height:18px;transform:rotate(-45deg);left:50%;top:50%;opacity:0;
+      animation:floatUp 5s linear infinite;}
+    .heart:before,.heart:after{content:'';position:absolute;width:18px;height:18px;background:var(--accent);border-radius:50%}
+    .heart:before{top:-9px;left:0}
+    .heart:after{left:9px;top:0}
+
+    @keyframes floatUp{
+      0%{transform:translateY(0) scale(0.8) rotate(-45deg);opacity:1}
+      100%{transform:translateY(-120vh) scale(1.2) rotate(-45deg);opacity:0}
+    }
+
+    footer{margin-top:18px;display:flex;justify-content:space-between;align-items:center;color:#591125;font-size:13px}
+
+    /* responsive */
+    @media (max-width:880px){.content{grid-template-columns:1fr}.right{order:2}.left{order:1}}
+
+    /* little sparkle */
+    .sparkle{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff;opacity:0.9;box-shadow:0 0 14px rgba(255,255,255,0.6)}
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="hearts" id="hearts"></div>
+    <header>
+      <div class="avatar">Ж</div>
+      <div>
+        <h1>Жанерке — моё солнце</h1>
+        <p class="lead">Для тебя — каждое сердцебиение и каждый рассвет.</p>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+        <button class="btn" id="btnSurprise">Удиви её</button>
+        <button class="outline" id="btnToggle">Запустить дождь сердец</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="left">
+        <div class="poem" id="poem">
+          <p>Жанерке, ты как тёплый летний дождь — тихая радость, что смывает все сомнения.</p>
+          <p>Твои глаза — две звезды, что ведут меня домой, даже если дорога вдруг теряется.</p>
+          <p>Я храню твой смех как драгоценность и верю, что наши дни будут простыми и счастливыми.</p>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn" id="btnLine">Добавить строку</button>
+          <button class="outline" id="btnChange">Поменять фон</button>
+        </div>
+      </div>
+
+      <aside class="right">
+        <div style="padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.92),rgba(255,255,255,0.85));box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)">
+          <strong>Небольшое послание:</strong>
+          <div style="margin-top:8px">Жанерке, ты — причина моего вдохновения. Пусть каждая минута с тобой будет как стихи.</div>
+        </div>
+
+        <div style="padding:14px;border-radius:12px;background:linear-gradient(180deg,var(--glass),var(--glass-2));min-height:120px">
+          <strong>Сделай красиво</strong>
+          <p style="margin:8px 0 0;font-size:14px">Нажми "Удиви её" — и я покажу небольшой сюрприз прямо на странице.</p>
+        </div>
+
+        <div style="padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(255,255,255,0.9));display:flex;flex-direction:column;gap:8px">
+          <label style="font-size:13px">Измени имя:</label>
+          <input id="inputName" placeholder="Жанерке" style="padding:10px;border-radius:8px;border:1px solid #ffd6e8;font-size:14px">
+          <button class="btn" id="applyName">Применить</button>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>С любовью — <strong>Мади</strong></div>
+      <div style="opacity:0.8">Открой страницу в полноэкранном режиме для лучшего эффекта</div>
+    </footer>
+  </div>
+
+  <script>
+    const hearts = document.getElementById('hearts');
+    const btnToggle = document.getElementById('btnToggle');
+    const btnSurprise = document.getElementById('btnSurprise');
+    const btnLine = document.getElementById('btnLine');
+    const poem = document.getElementById('poem');
+    const btnChange = document.getElementById('btnChange');
+    const inputName = document.getElementById('inputName');
+    const applyName = document.getElementById('applyName');
+    const title = document.querySelector('h1');
+
+    let raining = false;
+    let heartInterval = null;
+
+    function makeHeart(){
+      const el = document.createElement('div');
+      el.className='heart';
+      const size = Math.random()*20 + 12;
+      el.style.width = size+'px';
+      el.style.height = size+'px';
+      el.style.left = (Math.random()*100)+'%';
+      el.style.top = (100 + Math.random()*10)+'%';
+      el.style.animationDuration = (4 + Math.random()*3)+'s';
+      el.style.opacity = 1;
+      hearts.appendChild(el);
+      setTimeout(()=> el.remove(),7000);
+    }
+
+    btnToggle.addEventListener('click', ()=>{
+      raining = !raining;
+      btnToggle.textContent = raining ? 'Остановить дождь' : 'Запустить дождь сердец';
+      if(raining){
+        heartInterval = setInterval(makeHeart,220);
+      } else {
+        clearInterval(heartInterval);
+      }
+    });
+
+    btnSurprise.addEventListener('click', ()=>{
+      // Surprise: quick typed message
+      const lines = [
+        'Ты — моя самая красивая история.',
+        'С тобой каждый день — как праздник.',
+        'Пусть наши дорожки всегда пересекаются.'
+      ];
+      poem.innerHTML = '';
+      let i=0;
+      const t = setInterval(()=>{
+        if(i>=lines.length){ clearInterval(t); return; }
+        const p = document.createElement('p');
+        p.textContent = lines[i];
+        poem.appendChild(p);
+        i++;
+      },550);
+
+      // tiny sparkle
+      for(let s=0;s<18;s++){spawnSparkle()}
+    });
+
+    btnLine.addEventListener('click', ()=>{
+      const text = prompt('Напиши строчку для Жанерке:','Ты — моё небо');
+      if(text) {
+        const p = document.createElement('p');
+        p.textContent = text;
+        poem.appendChild(p);
+      }
+    });
+
+    btnChange.addEventListener('click', ()=>{
+      // swap palette randomly
+      const palettes = [
+        ['#ff9a9e','#fecfef','#ff3b6b'],
+        ['#a1c4fd','#c2e9fb','#2b6cff'],
+        ['#fbc2eb','#a6c1ee','#ff66b4'],
+        ['#fddb92','#d1fdff','#ffb021']
+      ];
+      const pick = palettes[Math.floor(Math.random()*palettes.length)];
+      document.documentElement.style.setProperty('--bg1', pick[0]);
+      document.documentElement.style.setProperty('--bg2', pick[1]);
+      document.documentElement.style.setProperty('--accent', pick[2]);
+    });
+
+    applyName.addEventListener('click', ()=>{
+      const val = inputName.value.trim();
+      if(val) title.textContent = val + ' — моё солнце';
+    });
+
+    function spawnSparkle(){
+      const s = document.createElement('div');
+      s.className='sparkle';
+      s.style.left = Math.random()*100 + '%';
+      s.style.top = Math.random()*100 + '%';
+      s.style.width = (4+Math.random()*8) + 'px';
+      s.style.height = s.style.width;
+      s.style.opacity = 0.9;
+      document.body.appendChild(s);
+      setTimeout(()=> s.style.opacity=0,50);
+      setTimeout(()=> s.remove(),1200);
+    }
+
+    // gentle autoplay hearts on load (short)
+    for(let i=0;i<12;i++){ setTimeout(makeHeart, i*140) }
+    // Easter Egg: double-click title
+  title.addEventListener('dblclick', ()=>{
+    const msg = ['Кое-что я тебе скажу...','ой бляя... ты нашла пасхалку 😅','Ты делаешь этот сайт живым ❤️'];
+    alert(msg[Math.floor(Math.random()*msg.length)]);
+  });
+
+  // Easter Egg: hidden word trigger in added lines
+  btnLine.addEventListener('click', ()=>{
+      const text = prompt('Напиши строчку для Жанерке:','Ты — моё небо');
+      if(text) {
+        const p = document.createElement('p');
+        p.textContent = text;
+        poem.appendChild(p);
+        if(text.includes('Кое-') || text.includes('ой бляя')){
+          for(let i=0;i<25;i++) spawnSparkle();
+          alert('Секретная фраза разблокировала эффект ✨');
+        }
+      }
+  });
+
+  // Button hover animation
+  const style = document.createElement('style');
+  style.textContent = `
+    .btn, .outline { transition: transform .25s ease, box-shadow .25s ease; }
+    .btn:hover, .outline:hover { transform: scale(1.07); box-shadow:0 12px 28px rgba(0,0,0,0.18); }
+  `;
+  document.head.appendChild(style);
+</script>
+</body>
+</html>
